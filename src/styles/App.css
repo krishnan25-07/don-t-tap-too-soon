@@ -1,0 +1,335 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+
+/* --------------------------------------------------
+   Light Arcade Theme
+-------------------------------------------------- */
+
+:root {
+  font-family: "Inter", sans-serif;
+  color: #26352e;
+  background: #f2f3e9;
+
+  --neon-green: #30b96c;
+  --neon-red: #e94b61;
+
+  --arcade-bg: #f2f3e9;
+  --arcade-card: #ffffff;
+  --arcade-panel: #e8eee5;
+  --arcade-border: #d7e2d5;
+  --arcade-text: #26352e;
+  --arcade-muted: #6c7c72;
+}
+
+/* --------------------------------------------------
+   Global Styles
+-------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--arcade-bg);
+  color: var(--arcade-text);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --------------------------------------------------
+   Main Game Layout
+-------------------------------------------------- */
+
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at top, #ffffff 0%, transparent 65%),
+    var(--arcade-bg);
+}
+
+.game-card {
+  width: 100%;
+  max-width: 680px;
+  padding: 40px;
+  border: 1px solid var(--arcade-border);
+  border-radius: 20px;
+  background: var(--arcade-card);
+  color: var(--arcade-text);
+  box-shadow: 0 12px 40px rgba(43, 82, 55, 0.09);
+}
+
+/* --------------------------------------------------
+   Game Heading and Text
+-------------------------------------------------- */
+
+.game-label {
+  margin: 0 0 18px;
+  color: var(--neon-red);
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.game-card h1 {
+  margin: 0;
+  color: var(--arcade-text);
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.game-card h1 span {
+  color: var(--neon-green);
+}
+
+.game-description {
+  margin: 14px 0 0;
+  color: var(--arcade-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------
+   Reaction Game Arena
+-------------------------------------------------- */
+
+.game-arena {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  margin: 28px 0 20px;
+  padding: 24px;
+  border: 2px solid var(--arcade-border);
+  border-radius: 16px;
+  background: var(--arcade-panel);
+  color: var(--arcade-text);
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.game-arena p {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Ready */
+
+.game-arena.ready {
+  background: var(--arcade-panel);
+  border-color: var(--arcade-border);
+  color: var(--arcade-text);
+}
+
+/* Waiting for green */
+
+.game-arena.waiting {
+  background: #fff0f1;
+  border-color: var(--neon-red);
+  color: #c82f48;
+  box-shadow: 0 0 18px rgba(233, 75, 97, 0.08);
+}
+
+/* Tap now */
+
+.game-arena.go {
+  background: #e2f8e9;
+  border-color: var(--neon-green);
+  color: #187c43;
+  box-shadow: 0 0 24px rgba(48, 185, 108, 0.16);
+}
+
+/* Too soon */
+
+.game-arena.tooSoon {
+  background: #fff0f1;
+  border-color: var(--neon-red);
+  color: #c82f48;
+  box-shadow: 0 0 18px rgba(233, 75, 97, 0.08);
+}
+
+/* Reaction result */
+
+.game-arena.result {
+  background: #e8f5e9;
+  border-color: var(--neon-green);
+  color: #187c43;
+}
+
+/* --------------------------------------------------
+   Start / Retry Button
+-------------------------------------------------- */
+
+.game-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 20px;
+  border: 1px solid var(--neon-green);
+  border-radius: 9px;
+  background: var(--neon-green);
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.game-button:hover:not(:disabled) {
+  background: #239d58;
+  box-shadow: 0 5px 18px rgba(48, 185, 108, 0.2);
+  transform: translateY(-2px);
+}
+
+.game-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.game-button:disabled {
+  border-color: #c8d2c9;
+  background: #dfe6df;
+  color: #778279;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.game-button:focus-visible,
+.view-score-button:focus-visible {
+  outline: 3px solid rgba(48, 185, 108, 0.4);
+  outline-offset: 4px;
+}
+
+/* --------------------------------------------------
+   View Score Navigation
+-------------------------------------------------- */
+
+.view-score-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  margin-top: 16px;
+  padding: 14px 20px;
+  border: 1px solid var(--neon-green);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #218b50;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.view-score-button:hover {
+  background: var(--neon-green);
+  color: #ffffff;
+  box-shadow: 0 5px 18px rgba(48, 185, 108, 0.2);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------
+   Game Footer Hint
+-------------------------------------------------- */
+
+.game-hint {
+  margin: 28px 0 0;
+  color: var(--arcade-muted);
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* --------------------------------------------------
+   Responsive Layout
+-------------------------------------------------- */
+
+@media (max-width: 480px) {
+  .game-container {
+    padding: 20px 14px;
+  }
+
+  .game-card {
+    padding: 26px 20px;
+    border-radius: 16px;
+  }
+
+  .game-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .game-card h1 {
+    font-size: clamp(27px, 8vw, 36px);
+  }
+
+  .game-arena {
+    min-height: 190px;
+    margin: 24px 0 18px;
+    padding: 18px;
+  }
+
+  .game-arena p {
+    font-size: 17px;
+  }
+
+  .game-button,
+  .view-score-button {
+    font-size: 11px;
+  }
+
+  .game-hint {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
